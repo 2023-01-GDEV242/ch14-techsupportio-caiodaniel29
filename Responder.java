@@ -126,10 +126,27 @@ public class Responder
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
             String response = reader.readLine();
             while(response != null) {
-                defaultResponses.add(response);
-                response = reader.readLine();
+                if (response.trim().equals("")){
+                    response = reader.readLine();
+                    }
+                    
+                else if(response.startsWith("No")){
+                        response = reader.readLine() + reader.readLine() + reader.readLine();
+                    }
+                    
+                else {
+                    if (response.startsWith(" ")){
+                        while (response.startsWith(" ")){
+                        response = reader.readLine();
+                        
+                       }
+                    }
+                    defaultResponses.add(response);
+                    response = reader.readLine();
+                }
             }
-        }
+                }
+        
         catch(FileNotFoundException e) {
             System.err.println("Unable to open " + FILE_OF_DEFAULT_RESPONSES);
         }
@@ -144,7 +161,7 @@ public class Responder
     }
 
     /**
-     * Randomly select and return one of the default responses.
+     * Randomly select and return one of the default responses.+
      * @return     A random default response
      */
     private String pickDefaultResponse()
@@ -152,6 +169,21 @@ public class Responder
         // Pick a random number for the index in the default response list.
         // The number will be between 0 (inclusive) and the size of the list (exclusive).
         int index = randomGenerator.nextInt(defaultResponses.size());
+        // String phrase = defaultResponses.get(index);
+        
+        // if (phrase == ""){
+            // index++;
+        // }
+        
+        // else if (defaultResponses.get(index).startsWith(" ")){
+            // index--;
+        // } 
+        
+        // else {
+            // index++;
+        // }
+        
+        
         return defaultResponses.get(index);
     }
 }
