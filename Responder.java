@@ -89,7 +89,7 @@ public class Responder
                     
                     int size = arryOfStr.length;
                     
-                    if (size > 1){
+                    if (size > 1){                                                  // in case that there is more than one keyword
                     responseMap.put(arryOfStr[1], tempString);  
                     }
                 }
@@ -100,7 +100,7 @@ public class Responder
                 tempString = "";
             }
             }
-        
+            
         catch(FileNotFoundException e) {
             System.err.println("Unable to open " + FILE_OF_KEYWORD_RESPONSES);
         }
