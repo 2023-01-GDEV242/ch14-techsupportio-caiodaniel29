@@ -15,6 +15,8 @@ Your description is a bit wishy-washy.
  Have you got an expert there with you who
  could describe this more precisely?
  
+ 
+ 
 That's not a bug, it's a feature!
 
 Could you elaborate on that?

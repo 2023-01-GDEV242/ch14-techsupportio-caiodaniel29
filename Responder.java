@@ -25,6 +25,8 @@ public class Responder
     private ArrayList<String> defaultResponses;
     // The name of the file containing the default responses.
     private static final String FILE_OF_DEFAULT_RESPONSES = "default.txt";
+    // The new file for responses based on keywords.
+    private static final String FILE_OF_KEYWORD_RESPONSES = "responseMapFile.txt";
     private Random randomGenerator;
 
     /**
@@ -125,8 +127,19 @@ public class Responder
         Path path = Paths.get(FILE_OF_DEFAULT_RESPONSES);
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
             String response = reader.readLine();
+            String tempString = "";
             while(response != null) {
-                defaultResponses.add(response);
+                
+                if (!response.trim().equals("")){
+                 tempString += response;
+                }
+                else if (!tempString.equals("")){
+                    defaultResponses.add(tempString);
+                    tempString = "";
+                }
+                else {
+                    response = reader.readLine();    // found an extra blank line
+                }
                 response = reader.readLine();
             }
         }
