@@ -84,6 +84,9 @@ public class Responder
                     while (!response.trim().equals("")){
                         tempString += response;                                     // combine responses into tempString
                         response = reader.readLine();                               // move to next line
+                        if (response == null) {
+                        break;                                    // get out of the file read loop - there is no more to do
+                    }
                     }
                     responseMap.put(arryOfStr[0], tempString);                                 // set the string as key words
                     
